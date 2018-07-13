@@ -4,31 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>
-        {% if title %}
-            {{title}} - Microblog
-        {% else %}
-            Welcome to Microblog
-        {% endif %}
-    </title>
+    {% if title %}
+           <title>{{title}} - Microblog</title> 
+    {% else %}
+            <title>Welcome to the Microblog</title> 
+    {% endif %}
 </head>
 <body>
-    <div>Microblog: 
-    <a href="{{ url_for('index') }}">Home</a>
-    <a href="{{ url_for('login') }}">Login</a>
+    <div>
+        Microblog:
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('login') }}">Login</a>
     </div>
     {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-                <li>{{ message }}</li>
-        {% endfor %}
-        
-    </ul>
-    {% endif %}
-    
+        {% if messages %}
+            {% for message in messages %}
+                    {{ message }}
+            {% endfor %}    
+        {% endif %}
     {% endwith %}
-    
     {% block contents %}{% endblock %}
 </body>
 </html>
